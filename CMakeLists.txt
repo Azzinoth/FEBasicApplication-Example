@@ -24,9 +24,14 @@ file(GLOB imgui_SRC
 	"FEBasicApplication/ThirdParty/imgui/imgui_widgets.cpp"
 )
 
-file(GLOB source_SRC
+file(GLOB BasicApplicationSubSystem_SRC
 	"FEBasicApplication/FEBasicApplication.cpp"
 	"FEBasicApplication/FEBasicApplication.h"
+	"FEBasicApplication/FETime.cpp"
+	"FEBasicApplication/FETime.h"
+)
+
+file(GLOB source_SRC
 	"main.cpp"
 )
 
@@ -36,6 +41,7 @@ link_directories("FEBasicApplication/ThirdParty/GLFW/lib/$(PlatformTarget)")
 # add the executable
 add_executable(FEBasicApplication WIN32
 								  ${source_SRC}
+								  ${BasicApplicationSubSystem_SRC}
 								  # *************** THIRD_PARTY ***************
 								  ${imgui_SRC}
 )
@@ -46,6 +52,7 @@ target_link_libraries(FEBasicApplication glfw3dll.lib)
 target_link_libraries(FEBasicApplication opengl32.lib)
 
 source_group("Source Files" FILES ${source_SRC})
+source_group("Source Files/SubSystems/BasicApplication" FILES ${BasicApplicationSubSystem_SRC})
 # *************** THIRD_PARTY ***************
 source_group("Source Files/ThirdParty/imgui" FILES ${imgui_SRC})
 
