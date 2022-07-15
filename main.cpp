@@ -3,16 +3,16 @@ using namespace FocalEngine;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	APPLICATION.createWindow(1280, 720, "FEBasicApplication example");
+	APPLICATION.InitWindow(1280, 720, "FEBasicApplication example");
 
-	while (APPLICATION.isWindowOpened())
+	while (APPLICATION.IsWindowOpened())
 	{
-		APPLICATION.beginFrame();
+		APPLICATION.BeginFrame();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		ImGui::ShowDemoWindow();
 
-		APPLICATION.endFrame();
+		APPLICATION.EndFrame();
 	}
 
 	return 0;

@@ -27,6 +27,8 @@ file(GLOB imgui_SRC
 file(GLOB BasicApplicationSubSystem_SRC
 	"FEBasicApplication/FEBasicApplication.cpp"
 	"FEBasicApplication/FEBasicApplication.h"
+	"FEBasicApplication/FEThreadPool.cpp"
+	"FEBasicApplication/FEThreadPool.h"
 	"FEBasicApplication/FETime.cpp"
 	"FEBasicApplication/FETime.h"
 )
