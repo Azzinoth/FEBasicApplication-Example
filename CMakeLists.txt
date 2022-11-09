@@ -29,6 +29,8 @@ file(GLOB BasicApplicationSubSystem_SRC
 	"FEBasicApplication/FEBasicApplication.h"
 	"FEBasicApplication/FEThreadPool.cpp"
 	"FEBasicApplication/FEThreadPool.h"
+	"FEBasicApplication/FELog.cpp"
+	"FEBasicApplication/FELog.h"
 	"FEBasicApplication/FETime.cpp"
 	"FEBasicApplication/FETime.h"
 )
