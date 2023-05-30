@@ -24,6 +24,17 @@ file(GLOB imgui_SRC
 	"FEBasicApplication/ThirdParty/imgui/imgui_widgets.cpp"
 )
 
+file(GLOB BasicApplicationNetworkSubSystem_SRC
+	"FEBasicApplication/SubSystems/Networking/FENetworkingBaseClasses.cpp"
+	"FEBasicApplication/SubSystems/Networking/FENetworkingBaseClasses.h"
+	"FEBasicApplication/SubSystems/Networking/FEClientSideNetworkConnection.cpp"
+	"FEBasicApplication/SubSystems/Networking/FEClientSideNetworkConnection.h"
+	"FEBasicApplication/SubSystems/Networking/FEServerSideNetworkConnection.cpp"
+	"FEBasicApplication/SubSystems/Networking/FEServerSideNetworkConnection.h"
+	"FEBasicApplication/SubSystems/Networking/FENetworking.cpp"
+	"FEBasicApplication/SubSystems/Networking/FENetworking.h"
+)
+
 file(GLOB BasicApplicationSubSystem_SRC
 	"FEBasicApplication/FEBasicApplication.cpp"
 	"FEBasicApplication/FEBasicApplication.h"
@@ -33,6 +44,8 @@ file(GLOB BasicApplicationSubSystem_SRC
 	"FEBasicApplication/FELog.h"
 	"FEBasicApplication/FETime.cpp"
 	"FEBasicApplication/FETime.h"
+	"FEBasicApplication/FEUniqueID.cpp"
+	"FEBasicApplication/FEUniqueID.h"
 )
 
 file(GLOB source_SRC
@@ -46,6 +59,7 @@ link_directories("FEBasicApplication/ThirdParty/GLFW/lib/$(PlatformTarget)")
 add_executable(FEBasicApplication WIN32
 								  ${source_SRC}
 								  ${BasicApplicationSubSystem_SRC}
+								  ${BasicApplicationNetworkSubSystem_SRC}
 								  # *************** THIRD_PARTY ***************
 								  ${imgui_SRC}
 )
@@ -57,6 +71,7 @@ target_link_libraries(FEBasicApplication opengl32.lib)
 
 source_group("Source Files" FILES ${source_SRC})
 source_group("Source Files/SubSystems/BasicApplication" FILES ${BasicApplicationSubSystem_SRC})
+source_group("Source Files/SubSystems/BasicApplication/SubSystems/Networking" FILES ${BasicApplicationNetworkSubSystem_SRC})
 # *************** THIRD_PARTY ***************
 source_group("Source Files/ThirdParty/imgui" FILES ${imgui_SRC})
 
