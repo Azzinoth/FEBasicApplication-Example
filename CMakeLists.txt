@@ -64,7 +64,7 @@ add_executable(FEBasicApplication WIN32
 								  ${imgui_SRC}
 )
 
-target_link_libraries(FEBasicApplication glew32.lib)
+target_link_libraries(FEBasicApplication glew32s.lib)
 target_link_libraries(FEBasicApplication glfw3.lib)
 target_link_libraries(FEBasicApplication glfw3dll.lib)
 target_link_libraries(FEBasicApplication opengl32.lib)
