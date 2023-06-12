@@ -12,14 +12,16 @@ project(FEBasicApplicationExample LANGUAGES CXX)
 # defined projects like INSTALL.vcproj and ZERO_CHECK.vcproj
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_subdirectory(FEBasicApplication)
+if(NOT TARGET FEBasicApplication)
+  add_subdirectory(SubSystems/FEBasicApplication)
+endif()
 
 file(GLOB source_SRC
 	"main.cpp"
 )
 
-link_directories("FEBasicApplication/ThirdParty/glew2/lib/$(PlatformTarget)")
-link_directories("FEBasicApplication/ThirdParty/GLFW/lib/$(PlatformTarget)")
+link_directories(${GLEW_LIB_DIR})
+link_directories(${GLFW_LIB_DIR})
 
 # add the executable
 add_executable(FEBasicApplicationExample WIN32
@@ -39,6 +41,6 @@ source_group("Source Files" FILES ${source_SRC})
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT FEBasicApplicationExample)
 
 include_directories(
-	"FEBasicApplication/ThirdParty/glew2/include"
-	"FEBasicApplication/ThirdParty/"
+	${GLEW_INCLUDE_DIR}
+	${BASICAPP_THIRDPARTY_DIR}
 )
