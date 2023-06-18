@@ -1,5 +1,7 @@
 # FEBasicApplication Example
 
+![build](https://github.com/Azzinoth/FEBasicApplication-Example/actions/workflows/Build.yml/badge.svg?branch=master)
+
 This repository provides an example of how to use the [FEBasicApplication](https://github.com/Azzinoth/FEBasicApplication/) module in a project. 
 
 ## Building the Project
