@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.10)
 
 set(BUILD_TYPE "Debug and Release" CACHE STRING "Choose Build type")
 set(CMAKE_BUILD_TYPE Debug)
@@ -28,12 +28,7 @@ add_executable(FEBasicApplicationExample WIN32
 								         ${source_SRC}
 )
 
-target_link_libraries(FEBasicApplicationExample FEBasicApplication)
-
-target_link_libraries(FEBasicApplicationExample glew32s.lib)
-target_link_libraries(FEBasicApplicationExample glfw3.lib)
-target_link_libraries(FEBasicApplicationExample glfw3dll.lib)
-target_link_libraries(FEBasicApplicationExample opengl32.lib)
+target_link_libraries(FEBasicApplicationExample PRIVATE FEBasicApplication)
 
 source_group("Source Files" FILES ${source_SRC})
 

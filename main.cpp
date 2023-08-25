@@ -9,7 +9,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		APPLICATION.BeginFrame();
 
-		glClearColor(0.6, 0.85, 0.917, 1.0);
+		glClearColor(0.6f, 0.85f, 0.917f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		ImGui::ShowDemoWindow();
 
