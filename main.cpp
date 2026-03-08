@@ -3,8 +3,13 @@ using namespace FocalEngine;
 
 void MainWindowRender()
 {
+#ifdef USE_DAWN_WEBGPU
+	// FE_FIX_ME: WebGPU equivalent.
+#else
 	glClearColor(0.6f, 0.85f, 0.917f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+#endif
+	
 	ImGui::ShowDemoWindow();
 }
 
