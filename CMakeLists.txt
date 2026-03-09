@@ -9,6 +9,8 @@ project(FEBasicApplicationExample)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(USE_STATIC_RUNTIME ON CACHE BOOL "Use static runtime (/MT) instead of dynamic (/MD)" FORCE)
+
 if(MSVC)
 	# Disable C4251 warning
 	add_compile_options(/wd4251)
