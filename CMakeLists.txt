@@ -60,7 +60,7 @@ if(EMSCRIPTEN)
 	set_target_properties(FEBasicApplicationExample PROPERTIES SUFFIX ".html")
 endif()
 
-if(USE_DAWN_WEBGPU)
+if(FE_GRAPHIC_API_BACKEND STREQUAL "WebGPU" AND NOT EMSCRIPTEN)
     target_link_libraries(FEBasicApplicationExample
         PRIVATE
             debug ${DAWN_LIBRARY_DEBUG}
@@ -76,10 +76,10 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT F
 include_directories(
 	${GLEW_INCLUDE_DIR}
 	${BASICAPP_THIRDPARTY_DIR}
-	$<$<BOOL:${USE_DAWN_WEBGPU}>:${DAWN_INCLUDE_DIR}>
+	$<$<STREQUAL:${FE_GRAPHIC_API_BACKEND},WebGPU>:${DAWN_INCLUDE_DIR}>
 )
 
-if(USE_DAWN_WEBGPU)
+if(FE_GRAPHIC_API_BACKEND STREQUAL "WebGPU" AND NOT EMSCRIPTEN)
 	add_custom_command(TARGET FEBasicApplicationExample POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_directory
 			"${DAWN_LIB_DIR}$<IF:$<CONFIG:Debug>,Debug,Release>/Dynamic_runtime/"
