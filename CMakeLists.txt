@@ -39,8 +39,10 @@ file(GLOB source_SRC
 	"main.cpp"
 )
 
-link_directories(${GLEW_LIB_DIR})
-link_directories(${GLFW_LIB_DIR})
+if(NOT EMSCRIPTEN)
+	link_directories(${GLEW_LIB_DIR})
+	link_directories(${GLFW_LIB_DIR})
+endif()
 
 # add the executable
 add_executable(FEBasicApplicationExample WIN32
@@ -51,6 +53,12 @@ target_link_libraries(FEBasicApplicationExample
 	PRIVATE
 		FEBasicApplication
 )
+
+# On Emscripten, emitting an .html alongside the .js/.wasm makes Emscripten generate
+# a default HTML shell with a #canvas element that hosts the wasm app.
+if(EMSCRIPTEN)
+	set_target_properties(FEBasicApplicationExample PROPERTIES SUFFIX ".html")
+endif()
 
 if(USE_DAWN_WEBGPU)
     target_link_libraries(FEBasicApplicationExample
