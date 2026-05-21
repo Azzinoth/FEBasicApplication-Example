@@ -114,6 +114,7 @@ REM ---------- 4. Serve ----------
 echo.
 echo ============================================================
 echo  Build complete. Serving %BUILD_DIR% on http://localhost:8080
+echo  Link http://localhost:8080/FEBasicApplicationExample.html
 echo  Press Ctrl+C to stop.
 echo ============================================================
 echo.
