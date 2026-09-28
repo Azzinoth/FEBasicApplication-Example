@@ -6,7 +6,7 @@ void MainWindowRender()
 	ImGui::ShowDemoWindow();
 }
 
-#ifdef _WIN32
+#if FE_PLATFORM(WINDOWS)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #else
 int main(int argc, char** argv)

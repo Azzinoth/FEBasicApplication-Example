@@ -24,3 +24,6 @@ Debug/
 Release/
 .vs/
 CMakeFiles/
+*.xcodeproj/
+CMakeScripts/
+build/
