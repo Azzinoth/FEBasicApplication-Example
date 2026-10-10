@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
 set(BUILD_TYPE "Debug and Release" CACHE STRING "Choose Build type")
-set(CMAKE_BUILD_TYPE Debug)
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE Debug)
+endif()
 set(CMAKE_CONFIGURATION_TYPES Debug Release)
 
 # set the project name
@@ -54,10 +56,14 @@ target_link_libraries(FEBasicApplicationExample
 		FEBasicApplication
 )
 
-# On Emscripten, emitting an .html alongside the .js/.wasm makes Emscripten generate
-# a default HTML shell with a #canvas element that hosts the wasm app.
+# On Emscripten, emit an .html alongside the .js/.wasm, built from Web_Shell.html
+# (a full-window #canvas that hosts the wasm app).
 if(EMSCRIPTEN)
-	set_target_properties(FEBasicApplicationExample PROPERTIES SUFFIX ".html")
+	set_target_properties(FEBasicApplicationExample PROPERTIES
+		SUFFIX ".html"
+		LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/Web_Shell.html"
+	)
+	target_link_options(FEBasicApplicationExample PRIVATE "--shell-file=${CMAKE_CURRENT_SOURCE_DIR}/Web_Shell.html")
 endif()
 
 if(FE_GRAPHIC_API_BACKEND STREQUAL "WebGPU" AND NOT EMSCRIPTEN)

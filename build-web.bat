@@ -7,8 +7,18 @@ REM   - Installs Emscripten SDK and Ninja inside this repo if
 REM     they are missing, then configures, builds, and serves.
 REM   - Re-running the script is safe: existing tools are reused.
 REM
+REM   Usage: build-web.bat [debug|release]   (default: release)
+REM   Each config builds into its own folder: build-web\Debug, build-web\Release.
+REM
 REM   If a previous build is broken, delete build-web\ and rerun.
 REM ============================================================
+
+set "CONFIG=Release"
+if /i "%~1"=="debug" set "CONFIG=Debug"
+if not "%~1"=="" if /i not "%~1"=="debug" if /i not "%~1"=="release" (
+    echo Usage: %~nx0 [debug^|release]
+    pause & exit /b 1
+)
 
 set "REPO_DIR=%~dp0"
 if "%REPO_DIR:~-1%"=="\" set "REPO_DIR=%REPO_DIR:~0,-1%"
@@ -16,9 +26,10 @@ if "%REPO_DIR:~-1%"=="\" set "REPO_DIR=%REPO_DIR:~0,-1%"
 set "EMSDK_ROOT=%REPO_DIR%\Emscripten_SDK"
 set "EMSDK_DIR=%EMSDK_ROOT%\emsdk"
 set "NINJA_DIR=%REPO_DIR%\Ninja"
-set "BUILD_DIR=%REPO_DIR%\build-web"
+set "BUILD_DIR=%REPO_DIR%\build-web\%CONFIG%"
 
 echo.
+echo === Config: %CONFIG%
 echo === Repo : %REPO_DIR%
 echo === emsdk: %EMSDK_DIR%
 echo === ninja: %NINJA_DIR%
@@ -96,8 +107,8 @@ if exist "%REPO_DIR%\CMakeFiles" (
 if not exist "%BUILD_DIR%" mkdir "%BUILD_DIR%"
 pushd "%BUILD_DIR%"
 
-echo [cmake] Configuring (emcmake cmake -G Ninja ..)...
-call emcmake cmake -G Ninja ..
+echo [cmake] Configuring %CONFIG% (emcmake cmake -G Ninja)...
+call emcmake cmake -G Ninja -DCMAKE_BUILD_TYPE=%CONFIG% "%REPO_DIR%"
 if errorlevel 1 (
     echo [cmake] ERROR: configure failed.
     echo         If this is a stale cache, delete "%BUILD_DIR%" and rerun.

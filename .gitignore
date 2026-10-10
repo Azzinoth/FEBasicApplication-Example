@@ -27,3 +27,6 @@ CMakeFiles/
 *.xcodeproj/
 CMakeScripts/
 build/
+build-web/
+Emscripten_SDK/
+Ninja/
